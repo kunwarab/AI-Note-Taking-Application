@@ -3,6 +3,7 @@ import cors from 'cors'
 import connectDB from './config/db.js'
 import dotenv from 'dotenv'
 import noteRoutes from './routes/noteRoutes.js'
+import authRoutes from './routes/authRoutes.js'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,9 +14,8 @@ dotenv.config();
 
 connectDB()
 
-console.log(`Request came till here`);
-
 app.use('/api/notes', noteRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('/ping', (req,res) => {
     res.send('Pong');
