@@ -1,4 +1,14 @@
 services:
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
   backend: 
     build:
       context: ./Backend
@@ -9,6 +19,7 @@ services:
       - ./Backend/.env
     depends_on:
       - mongo
+    restart: unless-stopped
 
   mongo:
     image: mongo:latest
