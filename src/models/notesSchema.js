@@ -10,10 +10,15 @@ const noteSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    userId: {
-      type: Number,
-      required: true,
+    userEmail: {
+      type: mongoose.Schema.Types.String,
+      ref: "User",
+      required: true, 
     },
+    embedding: {
+      type: [Number],
+      default: []
+    }
   },
   {
     timestamps: true,
